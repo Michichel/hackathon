@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catedral Antigua de Managua</title>
+    <link rel="icon" href="/MEDIA/Logo.png" type="image/png" sizes="64x64">
+    <link rel="stylesheet" href="/CSS/styles4.css">
+</head>
+
+<body>
+
+    <!-- Sección introductoria sobre la Catedral Antigua de Managua -->
+    <section>
+        <div class="container">
+            <h2>Catedral Antigua de Managua</h2>
+            <p>
+                La Antigua Catedral de Managua, conocida también como la "Catedral de Santiago" o "Vieja Catedral", 
+                fue construida en 1920 con un estilo neoclásico. Fue severamente dañada por el terremoto de 1972 que devastó Managua, 
+                y desde entonces ha permanecido en ruinas. Su estructura es un símbolo histórico y cultural de la ciudad, y aunque ya no 
+                se utiliza para servicios religiosos, es un importante punto de referencia turístico.
+            </p>
+        </div>
+    </section>
+
+    <!-- Carrusel de imágenes -->
+    <div class="carrusel" id="carrusel">
+        <div class="slides" id="slides">
+            <div class="slide">
+                <img src="/MEDIA/museos/f3.jpg" alt="Catedral Antigua de Managua 1">
+            </div>
+            <div class="slide">
+                <img src="/MEDIA/museos/f4.jpg" alt="Catedral Antigua de Managua 2">
+            </div>
+            <div class="slide">
+                <img src="imagen3.jpg" alt="Catedral Antigua de Managua 3">
+            </div>
+        </div>
+
+        <!-- Botones de navegación -->
+        <button class="prev" onclick="moverSlide(-1)">&#10094;</button>
+        <button class="next" onclick="moverSlide(1)">&#10095;</button>
+        
+        <!-- Botón de pantalla completa -->
+        <button class="fullscreen" onclick="pantallaCompleta()">Pantalla completa</button>
+    </div>
+
+    <!-- Sección para mostrar Google Maps -->
+    <section>
+        <div class="container">
+            <h2>Ubicación de la Catedral Antigua de Managua</h2>
+            <div class="mapa">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3941.3393139449363!2d-86.26926768933555!3d12.132192188061694!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f7155e4aca0e59d%3A0x6ecf9164ac1c6265!2sCatedral%20de%20Managua!5e1!3m2!1ses-419!2sni!4v1729254274611!5m2!1ses-419!2sni"
+                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+    <button><a href="/HTML/first_page.html">Volver</a></button>
+
+    <!-- Script para controlar el carrusel -->
+    <script>
+        let slideIndex = 0;
+
+        function moverSlide(n) {
+            const slides = document.getElementById('slides');
+            const totalSlides = slides.children.length;
+            slideIndex = (slideIndex + n + totalSlides) % totalSlides;
+            slides.style.transform = `translateX(${-slideIndex * 100}%)`;
+        }
+
+        function pantallaCompleta() {
+            const carrusel = document.getElementById('carrusel');
+            if (carrusel.requestFullscreen) {
+                carrusel.requestFullscreen();
+            } else if (carrusel.mozRequestFullScreen) { // Firefox
+                carrusel.mozRequestFullScreen();
+            } else if (carrusel.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                carrusel.webkitRequestFullscreen();
+            } else if (carrusel.msRequestFullscreen) { // IE/Edge
+                carrusel.msRequestFullscreen();
+            }
+        }
+    </script>
+
+</body>
+
+</html>

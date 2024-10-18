@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hisporés</title>
+    <link rel="icon" href="../MEDIA/Logo.png" type="image/png" sizes="64x64">
+    <link href="../CSS/styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-section">
+            <form id="registroForm">
+                <h3>Registrarse</h3>
+                <label for="Correo">Correo
+                    <input type="email" placeholder="Email" id="email" required>
+                </label>
+
+                <label for="username">Nombre de usuario
+                    <input type="text" placeholder="Nombre de usuario" id="username" required>
+                </label>
+
+                <label for="password">Contraseña
+                    <input type="password" placeholder="Contraseña" id="contraseña" required>
+                </label>
+                <input type="submit" id="register" class="register" value="Ingresar" />
+
+                <div class="form">
+                    <p>¿Ya posees una cuenta? <a href="login.html">Volver a Inicio</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+        import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
+        import { getAuth, createUserWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAW3-ZyIRxtaWpN6upO28Dy9xup_8ANTug",
+            authDomain: "database-bdad6.firebaseapp.com",
+            projectId: "database-bdad6",
+            storageBucket: "database-bdad6.appspot.com",
+            messagingSenderId: "983982590456",
+            appId: "1:983982590456:web:08dc134f06628a28336e0d"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const auth = getAuth();
+
+        const registroForm = document.getElementById('registroForm');
+
+        registroForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const contraseña = document.getElementById('contraseña').value;
+
+            createUserWithEmailAndPassword(auth, email, contraseña)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    alert('Usuario creado exitosamente.');
+
+                    set(ref(database, 'users/' + user.uid), {
+                        username: username,
+                        email: email
+                    }).then(() => {
+                        console.log('Datos de usuario guardados en la base de datos.');
+                    }).catch((error) => {
+                        console.error('Error al guardar los datos en la base de datos:', error);
+                    });
+                })
+                .catch((error) => {
+                    const errorMessage = error.message;
+                    alert('Error: ' + errorMessage);
+                });
+        });
+    </script>
+</body>
+<footer>
+    <div class="container">
+        <p>&copy; Hisporés hackaton</p>
+    </div>
+</footer>
+</html>

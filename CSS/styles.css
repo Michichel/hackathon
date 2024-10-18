@@ -1,0 +1,153 @@
+*::after, *::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(/MEDIA/background.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+}
+
+.fondo {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: transparent;
+}
+
+form {
+    width: 350px;
+    background-color: rgba(51, 103, 214, 0.85); /* Reduce opacidad */
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    position: absolute;
+    right: 50px; /* Formulario a la derecha */
+    top: 50%;
+    transform: translateY(-50%); /* Centramos verticalmente */
+}
+
+form:hover {
+    transform: translateY(-52%);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+form h3 {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+label {
+    width: 100%;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 14px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+input:focus {
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+    outline: none;
+}
+
+input::placeholder {
+    color: #ddd;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    background-color: #ff512f;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff8832;
+    transform: scale(1.1);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.form p {
+    color: white;
+    margin-top: 20px;
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+.form a {
+    color: #ffdd00;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.form a:hover {
+    text-decoration: underline;
+    color: #fff200;
+}
+
+.form a:active {
+    color: #ffd700;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes popUp {
+    0% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

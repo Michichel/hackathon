@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Perfil</title>
+    <link rel="stylesheet" href="/CSS/styles.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h3>Editar Perfil</h3>
+
+        <!-- Formulario para editar nombre de usuario -->
+        <form id="profileForm">
+            <label for="username">Nombre de Usuario</label>
+            <input type="text" id="username" placeholder="Nuevo nombre de usuario" required>
+
+            <!-- Formulario para subir una imagen de perfil -->
+            <label for="profileImage">Imagen de Perfil</label>
+            <input type="file" id="profileImage" accept="image/*" required>
+
+            <input type="submit" id="saveChanges" class="btn" value="Guardar Cambios">
+        </form>
+    </div>
+
+    <script type="module">
+        // Importar las funciones necesarias de Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+        import { getDatabase, ref, update } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+        import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-storage.js";
+
+        // Configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyAW3-ZyIRxtaWpN6upO28Dy9xup_8ANTug",
+            authDomain: "database-bdad6.firebaseapp.com",
+            projectId: "database-bdad6",
+            storageBucket: "database-bdad6.appspot.com",
+            messagingSenderId: "983982590456",
+            appId: "1:983982590456:web:08dc134f06628a28336e0d"
+        };
+
+        // Inicializar Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const auth = getAuth();
+        const storage = getStorage();
+
+        // Obtener referencia al formulario
+        const profileForm = document.getElementById('profileForm');
+
+        // Manejar el evento de envío del formulario
+        profileForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const user = auth.currentUser;
+            if (!user) {
+                alert("No has iniciado sesión.");
+                return;
+            }
+
+            const username = document.getElementById('username').value.trim();
+            const profileImage = document.getElementById('profileImage').files[0];
+
+            // Verificar si hay un archivo seleccionado
+            if (!profileImage) {
+                alert("Por favor, selecciona una imagen.");
+                return;
+            }
+
+            // Crear una referencia en Firebase Storage para la imagen del perfil
+            const imageRef = storageRef(storage, 'profile_images/' + user.uid);
+
+            // Subir la imagen a Firebase Storage
+            uploadBytes(imageRef, profileImage).then((snapshot) => {
+                // Obtener la URL de descarga de la imagen subida
+                return getDownloadURL(snapshot.ref);
+            }).then((imageUrl) => {
+                // Actualizar el nombre de usuario e imagen en la base de datos
+                return update(ref(database, 'users/' + user.uid), {
+                    username: username,
+                    profile_image: imageUrl
+                });
+            }).then(() => {
+                alert('Perfil actualizado correctamente.');
+            }).catch((error) => {
+                console.error('Error al actualizar el perfil:', error);
+                alert('Hubo un problema al actualizar tu perfil.');
+            });
+        });
+    </script>
+
+</body>
+
+<footer>
+    <div class="container">
+        <p>&copy; Hisporés hackaton</p>
+    </div>
+</footer>
+
+</html>
