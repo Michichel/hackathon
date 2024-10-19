@@ -75,6 +75,148 @@ body {
     animation: slideIn 0.8s forwards 0.5s; /* Slide-in para el texto */
 }
 
+.galeria-imagenes{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    text-align: center;
+}
+
+.galeria-imagenes img{
+    width: 250px;
+    height: 250px;
+}
+
+/* Sección de imágenes destacadas */
+.imagenes-destacadas {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    text-align: center;
+}
+
+.imagenes-destacadas img {
+    width: 20rem;
+    height: auto;
+    border-radius: 50%;
+   
+}
+
+/* Sección de misión y visión */
+.seccion-mision,
+.seccion-vision {
+    background: url('../MEDIA/museos/palacio-01.jpg') center/cover no-repeat;
+    color: #fff;
+    padding: 50px 20px;
+    text-align: center;
+    height: 80vh;
+}
+
+.seccion-mision h2, .seccion-vision h2 {
+    
+    font-size: 2em;
+    margin-bottom: 20px;
+    
+}
+
+.seccion-mision p, .seccion-vision p {
+    max-width: 800px;
+    margin: auto;
+    font-size: 1.2em;
+}
+
+.seccion-vision .fondo-vision{
+    background-color: #87503187;
+    width: 350px;
+    height: 100%;
+    padding: 6px;
+}
+
+.fondo-mision{
+    padding: 100px;
+    background-color: #87503187;
+    width: 350px;
+    height: 100%;
+    padding: 6px;
+}
+
+
+
+
+
+footer {
+    background-color: #007bff; /* Fondo oscuro elegante */
+    padding: 20px 0;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo-letra h2 {
+    font-size: 24px;
+    color: #ecf0f1;
+    font-weight: bold;
+}
+
+.linksnav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.linksnav ul li a {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.linksnav ul li a:hover {
+    color: #f39c12; /* Color de hover */
+}
+
+.social-media {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.social-media a {
+    color: #ecf0f1;
+    font-size: 24px;
+    transition: color 0.3s;
+}
+
+.social-media a:hover {
+    color: #f39c12;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+
+/* responsive */
 /* Estilos para móviles */
 @media (max-width: 768px) {
     .hero-content h2 {
