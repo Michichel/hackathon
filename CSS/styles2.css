@@ -258,32 +258,7 @@ footer .container{
         width: 400px; 
     }
 
-    #nuestros-programas .programas{
-        display: flex;
-        justify-content: center;
-    }
-
-    #nuestros-programas p{
-        display: block;
-        margin-bottom: 30px;
-    }
-
-    #nuestros-programas h2{
-        font-size: 4em;
-    }
-
-    #nuestros-programas h3{
-        margin-top: 0;
-    }
-
-    #nuestros-programas .carta{
-        padding: 50px;
-        background-size: 100% 150px;
-        background-repeat: no-repeat;
-        background-position-y: 0;
-        background-color: rgba(50, 50, 50, 1);
-        box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-    }
+    
 
     .carta:first-child{
         background-image: linear-gradient(

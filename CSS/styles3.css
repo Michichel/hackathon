@@ -70,7 +70,7 @@ body {
     font-size: 48px;
     font-weight: bold;
     text-align: center;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 4px rgb(255, 255, 255);
     opacity: 0;
     animation: slideIn 0.8s forwards 0.5s; /* Slide-in para el texto */
 }
@@ -151,11 +151,8 @@ body {
 }
 
 
-
-
-
 footer {
-    background-color: #007bff; /* Fondo oscuro elegante */
+    background-color: #02254a; /* Fondo oscuro elegante */
     padding: 20px 0;
     color: white;
     font-family: 'Arial', sans-serif;
